@@ -79,3 +79,8 @@ void TrafficLight::cycleThroughPhases()
     }
 }
 
+    TrafficLightPhase TrafficLight::toggle(TrafficLightPhase current){
+        if(current == TrafficLightPhase::green)
+            return TrafficLightPhase::red;
+        return TrafficLightPhase::green;
+    }
