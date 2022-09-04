@@ -43,7 +43,7 @@ class TrafficLight: public TrafficObject
 {
 public:
     // constructor / desctructor
-
+    TrafficLight();
     // getters / setters
     TrafficLightPhase getCurrentPhase();
     // typical behaviour methods
