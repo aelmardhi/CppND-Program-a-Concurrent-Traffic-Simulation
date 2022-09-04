@@ -68,7 +68,7 @@ void TrafficLight::simulate()
 
 std::random_device rd;
 std::mt19937 TrafficLight::_randomEng (rd());
-std::uniform_int_distribution<> TrafficLight::_distribution (4,6);
+std::uniform_int_distribution<> TrafficLight::_distribution (4000,6000); //time in milliseconds to get wide range
 
 // virtual function which is executed in a thread
 void TrafficLight::cycleThroughPhases()
@@ -89,7 +89,7 @@ void TrafficLight::cycleThroughPhases()
         std::this_thread::sleep_for(std::chrono::milliseconds(1));
 
         // compute time difference to stop watch
-        long timeSinceLastUpdate = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now() - lastUpdate).count();
+        long timeSinceLastUpdate = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - lastUpdate).count();
         if (timeSinceLastUpdate >= cycleDuration)
         {
             _messageQueue.send(std::move(toggle(getCurrentPhase())));   
