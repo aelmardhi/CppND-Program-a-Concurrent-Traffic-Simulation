@@ -39,6 +39,7 @@ TrafficLight::TrafficLight()
 {
     _currentPhase = TrafficLightPhase::red;
 }
+TrafficLight::~TrafficLight(){} // if you define constructor its better to efine constructor 
 
 void TrafficLight::waitForGreen()
 {
