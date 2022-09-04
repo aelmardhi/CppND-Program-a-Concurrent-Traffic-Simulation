@@ -3,6 +3,7 @@
 
 #include <mutex>
 #include <deque>
+#include <random>
 #include <condition_variable>
 #include "TrafficObject.h"
 
@@ -63,6 +64,8 @@ private:
     MessageQueue<TrafficLightPhase> _messageQueue;
     std::condition_variable _condition;
     std::mutex _mutex;
+    static std::mt19937 _randomEng; //use static randm generators because thier creation is time-consuming and recreating them resets the sequence
+    static  std::uniform_int_distribution<> _distribution;
 };
 
 #endif

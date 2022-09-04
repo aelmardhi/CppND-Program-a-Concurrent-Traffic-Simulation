@@ -1,5 +1,4 @@
 #include <iostream>
-#include <random>
 #include "TrafficLight.h"
 #include <chrono>
 
@@ -67,6 +66,10 @@ void TrafficLight::simulate()
     threads.emplace_back(std::move(std::thread(&TrafficLight::cycleThroughPhases,this)));
 }
 
+std::random_device rd;
+std::mt19937 TrafficLight::_randomEng (rd());
+std::uniform_int_distribution<> TrafficLight::_distribution (4,6);
+
 // virtual function which is executed in a thread
 void TrafficLight::cycleThroughPhases()
 {
@@ -76,10 +79,7 @@ void TrafficLight::cycleThroughPhases()
     // Also, the while-loop should use std::this_thread::sleep_for to wait 1ms between two cycles. 
     
     // pick cycle duration at random
-    std::random_device rd;
-    std::mt19937 eng(rd());
-    std::uniform_int_distribution<> distr(4, 6);
-    int cycleDuration = distr(eng);
+    int cycleDuration = _distribution(_randomEng);
     std::chrono::time_point<std::chrono::system_clock> lastUpdate;
 
     // init stop watch
