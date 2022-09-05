@@ -62,8 +62,6 @@ private:
     // and use it within the infinite loop to push each new TrafficLightPhase into it by calling 
     // send in conjunction with move semantics.
     MessageQueue<TrafficLightPhase> _messageQueue;
-    std::condition_variable _condition;
-    std::mutex _mutex;
     static std::mt19937 _randomEng; //use static randm generators because thier creation is time-consuming and recreating them resets the sequence
     static  std::uniform_int_distribution<> _distribution;
 };
